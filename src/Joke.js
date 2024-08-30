@@ -1,20 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Joke.css";
 
 /** A single joke, along with vote up/down buttons. */
 
-class Joke extends Component {
-  render() {
-    const { id, vote, votes, text } = this.props;
+const Joke = ({vote, votes, text, id}) => {
+  function upVote(evt) { vote(id, +1); }
+  function downVote(evt) { vote(id, -1); }
 
-    return (
-      <div className="Joke">
+  return(
+    <div className="Joke">
         <div className="Joke-votearea">
-          <button onClick={evt => vote(id, +1)}>
+          <button onClick={upVote}>
             <i className="fas fa-thumbs-up" />
           </button>
 
-          <button onClick={evt => vote(id, -1)}>
+          <button onClick={downVote}>
             <i className="fas fa-thumbs-down" />
           </button>
 
@@ -23,8 +23,7 @@ class Joke extends Component {
 
         <div className="Joke-text">{text}</div>
       </div>
-    );
-  }
+  )
 }
 
 export default Joke;
